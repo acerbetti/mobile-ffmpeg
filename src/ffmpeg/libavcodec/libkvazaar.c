@@ -124,7 +124,7 @@ static av_cold int libkvazaar_init(AVCodecContext *avctx)
         kvz_data_chunk *data_out = NULL;
         kvz_data_chunk *chunk = NULL;
         uint32_t len_out;
-        kvz_pixel *p;
+        uint8_t *p;
 
         if (!api->encoder_headers(enc, &data_out, &len_out))
             return AVERROR(ENOMEM);
@@ -217,7 +217,7 @@ static int libkvazaar_encode(AVCodecContext *avctx,
               0
             };
             av_image_copy(input_pic->data, dst_linesizes,
-                          (const kvz_pixel **)frame->data, frame->linesize,
+                          (const uint8_t **)frame->data, frame->linesize,
                           frame->format, frame->width, frame->height);
         }
 
